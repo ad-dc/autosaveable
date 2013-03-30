@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Autosaveable::VERSION
   spec.authors       = ["Dan Hoerr"]
   spec.email         = ["dan.hoerr@appdirect.com"]
-  spec.description   = ["Enables Autosave in Doc-Center"]
-  spec.summary       = ["yup"]
-  spec.homepage      = ""
+  spec.description   = "Enables Autosave in Doc-Center"
+  spec.summary       = "Enables Autosave in Doc-Center"
+  spec.homepage      = "http://www.appdirect.com"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
