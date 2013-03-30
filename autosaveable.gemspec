@@ -6,10 +6,10 @@ require 'autosaveable/version'
 Gem::Specification.new do |spec|
   spec.name          = "autosaveable"
   spec.version       = Autosaveable::VERSION
-  spec.authors       = ["dan-hoerr"]
-  spec.email         = ["dhoerr@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.authors       = ["Dan Hoerr"]
+  spec.email         = ["dan.hoerr@appdirect.com"]
+  spec.description   = ["Enables Autosave in Doc-Center"]
+  spec.summary       = ["seriously, that's all it does."]
   spec.homepage      = ""
   spec.license       = "MIT"
 
