@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Dan Hoerr"]
   spec.email         = ["dan.hoerr@appdirect.com"]
   spec.description   = ["Enables Autosave in Doc-Center"]
-  spec.summary       = ["seriously, that's all it does."]
+  spec.summary       = ["TODO"]
   spec.homepage      = ""
   spec.license       = "MIT"
 
