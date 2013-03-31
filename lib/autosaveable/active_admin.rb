@@ -28,11 +28,11 @@ module AutoSaveable
         current_resource = eval(resource_string)
         div :class => "autosave_status" do
           span "Autosave idle...", :class => "text_status"
-          
+
         end
-        ul do
+        ul :id => "autosaves_list" do
           if !current_resource.autosaves.empty?
-            current_resource.autosaves.each do |autosave|
+            current_resource.autosaves.reverse.each do |autosave|
               li link_to "Autosave #{autosave.created_at.to_s :long_ordinal}", send("edit_admin_#{resource_string.downcase}_path", :autosave_id => autosave.id) 
             end
           else

@@ -63,6 +63,10 @@ module AutoSaveable
             :whodunnit => 'system'
           }
           send(self.class.autosaves_association_name).create! data
+          limit_autosaves_to_five()
+          return true
+        else
+          return false
         end
       end
 
@@ -77,6 +81,13 @@ module AutoSaveable
       end
 
       private
+
+      def limit_autosaves_to_five
+        if self.autosaves.length > 5
+          diff = self.autosaves.length - 5
+          self.autosaves.reverse.pop(diff).each { |item| AutoSave.find(item.id).delete }
+        end
+      end
 
       def changed_significantly?
         last_autosave = self.autosaves.last
