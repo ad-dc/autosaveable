@@ -1,6 +1,6 @@
 # Autosaveable
 
-TODO: Write a gem description
+This gem needs a lot of work to be a stand-along thing, but provides some basic autosave functionality for activeadmin.  It borrows *extremely* heavily from the fantastic paper_trail gem: https://github.com/airblade/paper_trail/. Originally this functionality was mixed into a custom branch of paper_trail but we opted to refactor it into a separate gem because it broke some of the basic conventions of paper_trail's data structure.
 
 ## Installation
 
@@ -18,7 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Create a "saves" table with "item_type:string", "item_id:integer", "whodunnit:string", "object:text"
+2. install this gem
+3. add has_autosave to your models
+4. add include AutoSaveable::ActiveAdmin to the corresponding activeadmin resources
+5. write javascript and a custom controller to autosave your forms... (see the ToDos)
+
+## Roadmap
+
+1. Add initializers/generators/whatever to create saves table
+2. Add tests
+3. Add javascript and controller code
 
 ## Contributing
 
