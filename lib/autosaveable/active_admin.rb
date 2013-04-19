@@ -19,10 +19,6 @@ module AutoSaveable
       # this seems to work without the block... not really sure why.
       base.send :member_action, :versions
 
-      base.sidebar :autosave_status, :only => :edit do
-
-      end
-
       base.sidebar :autosaves, :only => :edit do
         resource_string = resource_class.to_s.downcase
         current_resource = eval(resource_string)
