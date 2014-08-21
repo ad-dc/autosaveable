@@ -23,7 +23,7 @@ module AutoSaveable
       base.sidebar :autosaves, :only => :edit do
         resource_string = resource_class.to_s.downcase
 
-        current_resource = resource_class.find(params[:id])
+        current_resource = resource
         div :class => "autosave_status" do
           span "Autosave idle...", :class => "text_status"
 
@@ -54,7 +54,7 @@ module AutoSaveable
 
         def edit
           resource_string = resource_class.to_s.downcase
-          current_resource = resource_class.find(params[:id])
+          current_resource = resource
           #current_resource = self.instance_variable_get "@#{resource_string}"
           if params[:autosave_id]
             version_to_replace_with = current_resource.autosaves.find(params[:autosave_id])
