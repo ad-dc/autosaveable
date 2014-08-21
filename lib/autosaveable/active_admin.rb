@@ -1,10 +1,11 @@
-module AutoSaveable  
+module AutoSaveable
   module ActiveAdmin
     def self.included(base)
 
       def resource_class
         resource_string.camelize.constantize
       end
+
 
       base.action_item :only => :edit do
         resource_string = base.config.resource_name
@@ -21,7 +22,8 @@ module AutoSaveable
 
       base.sidebar :autosaves, :only => :edit do
         resource_string = resource_class.to_s.downcase
-        current_resource = eval(resource_string)
+
+        current_resource = resource_class.find(params[:id])
         div :class => "autosave_status" do
           span "Autosave idle...", :class => "text_status"
 
@@ -29,10 +31,10 @@ module AutoSaveable
         ul :id => "autosaves_list" do
           if !current_resource.autosaves.empty?
             current_resource.autosaves.reverse.each do |autosave|
-              li link_to "Autosave #{autosave.created_at.to_s :long_ordinal}", send("edit_admin_#{resource_string.downcase}_path", :autosave_id => autosave.id) 
+              li link_to "Autosave #{autosave.created_at.to_s :long_ordinal}", send("edit_admin_#{resource_string.downcase}_path", :autosave_id => autosave.id)
             end
           else
-            li "No autosaves yet." 
+            li "No autosaves yet."
           end
         end
 
@@ -43,16 +45,17 @@ module AutoSaveable
         def rollback
           @resource = resource_class.find(params[:id])
           version = @resource.versions.find(params[:version].to_i)
-          
+
           @version = version.event == "autosave" ? version : version.next
-          
+
           @version.reify.save
           redirect_to :back, :notice => "Reverted."
         end
 
         def edit
           resource_string = resource_class.to_s.downcase
-          current_resource = self.instance_variable_get "@#{resource_string}"
+          current_resource = resource_class.find(params[:id])
+          #current_resource = self.instance_variable_get "@#{resource_string}"
           if params[:autosave_id]
             version_to_replace_with = current_resource.autosaves.find(params[:autosave_id])
             instance_variable_set "@#{resource_string}", version_to_replace_with.reify
