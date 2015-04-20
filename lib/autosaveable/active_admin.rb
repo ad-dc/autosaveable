@@ -18,7 +18,11 @@ module AutoSaveable
       end
 
       # this seems to work without the block... not really sure why.
-      base.send :member_action, :versions
+      base.send(:member_action, :versions) do
+        resource_string = resource_class.to_s.downcase
+        var_name = "@#{resource_string}"
+        instance_variable_set(var_name, resource)
+      end
 
       base.sidebar :autosaves, :only => :edit do
         resource_string = resource_class.to_s.downcase
